@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+<style>
+    .generaldesign {
+        background-color: blanchedalmond;
+    }
+
+    .box {
+        display: inline-block;
+        vertical-align: top;
+        width: 250px;
+        height: 250px;
+        background-color: rgb(204, 0, 0, 0.8);
+        border: 1px solid black;
+        padding: 10px;
+        margin: 10px;
+        text-align: center;
+        font-size: xx-large;
+        color: rgb(255, 215, 0);
+    }
+
+    .topstyle {
+        color: rgb(204, 0, 0, 0.8);
+        font-size: xx-large;
+        text-align: center;
+        width: 100%;
+    }
+
+    .helpButtons {
+        display: inline-block;
+    }
+
+    .hidden {
+        display: none;
+        text-align: center;
+    }
+    
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    .boxContainer {
+        margin-left: 25%;
+        margin-right: -25%;
+    }
+
+    .centeredRedText {
+        color: rgb(204, 0, 0, 0.8);
+        text-align: center;
+    }
+
+    
+</style>
+
+<title>Russian Study Helper</title>
+
+<body class="generaldesign">
+    <h1 class="topstyle">Russian Study Helper</h1>
+
+    <div class="boxContainer">
+        <div class="box" onclick="rusCardDraw()">
+        <div id="cardBoxFR"></div>
+        </div>
+
+        <div class="box" onclick="showEnglishCard()">
+        <div id="cardBoxEN"></div>
+        </div>
+        <br>
+        <button id="prevCardButton" onclick="prevCard()">Previous Card</button>
+    </div>
+
+    <div id="wordLookupEntryContainer">
+        <label for="wordLookupEntryBox">Enter Russian Word:</label>
+        <input type="text" id="wordLookupEntryBox">
+        <button onclick="searchWord()" id="searchWordButton">Lookup Word</button>
+    </div>
+
+    <br>
+    <h3 class="centeredRedText">Grammar Help</h3>
+    <div class="boxContainer">
+        <button class="helpButtons" onclick="showAccTable()" id="accTableButton"> Accusative Case </button>
+        <button class="helpButtons" onclick="showPrepTable()" id="prepTableButton"> Prepositional Case </button>
+        <button class="helpButtons" onclick="showDativeTable()" id="dativeTableButton"> Dative Case </button>
+        <button class="helpButtons" onclick="showInstrumentalTable()" id="instrumentalTableButton"> Instrumental Case </button>
+        <button class="helpButtons" onclick="showGenitiveTable()" id="genitiveTableButton"> Genitive Case </button>
+        <br>
+    </div>
+
+
+<div class="hidden" id="accTable">
+    <h3>ACCUSATIVE CASE</h3>
+    <p>Used for direct object, also following some prepositions</p>
+    <table>
+        <tr>
+            <th>NOUNS</th>
+        </tr>
+        <tr>
+            <th>Masculine</th>
+            <th>Feminine</th>
+            <th>Neuter</th>
+            <th>Plural</th>
+        </tr>
+        <tr>
+            <td>If inamnitate -> No change. 
+                <br>
+                If animate, (a -> y), (я -> ю), (_ -> a), (ь -> я)
+            </td>
+            <td>(a -> y), (я -> ю)</td>
+            <td>Never changes</td>
+            <td>Inanimate plurals don't change</td>
+        </tr>
+    </table>
+    <br>
+   <table>
+    <tr>
+        <th>ADJECTIVES</th>
+    </tr>
+    <tr>
+        <th>Masculine</th>
+        <th>Feminine</th>
+        <th>Neuter</th>
+        <th>Plural</th>
+    </tr>
+    <tr>
+        <td>Неодушевленный → Какой (ый, ий, ой) = Nominative case
+            <br>
+            Одушевлённый → Какого? - ого, его
+            <br>
+            Старого, Нового, Красивого, Интересного
+            </td>
+    
+        <td>
+            Какую? → ую, юю
+            <br>
+            99% мы говорим ую
+            <br>
+            Красивую, Новую, Старую, Интересную
+            <br>
+            Древняя → Древнюю
+
+        </td>
+        <td>Какое? → ое, ее</td>
+        <td>Inanimate - they don’t change → Какие? - ие, ые </td>
+        </tr>
+   </table>
+    <br>
+
+   <table>
+    <tr>
+        <th>PERSONAL PRONOUNS</th>
+    </tr>
+    <tr>
+        <td>Me</td>
+        <td> Mеня</td>
+    </tr>
+    <tr>
+        <td>You</td>
+        <td>тебя</td>
+    </tr>
+    <tr>
+        <td>Him</td>
+        <td>его</td>
+    </tr>
+    <tr>
+        <td>Her</td>
+        <td>ее</td>
+    </tr>
+    <tr>
+        <td>Us</td>
+        <td>Нас</td>
+    </tr>
+    <tr>
+        <td>y'all</td>
+        <td>Вас</td>
+    </tr>
+    <tr>
+        <td>They</td>
+        <td>Их</td>
+    </tr>
+   </table>
+   <br>
+   
+    <table>
+        <tr>
+            <th>POSESSIVE PRONOUNS</th>
+        </tr>
+        <tr>
+            <th>Masculine</th>
+            <th>Feminine</th>
+            <th>Neuter</th>
+            <th>Plural</th>
+        </tr>
+        <tr>
+            <td>Мой / Моего</td>
+            <td>Мою</td>
+            <td>Moe</td>
+            <td>Мои / Моих</td>
+        </tr>
+        <tr>
+            <td>Твой / Тоего</td>
+            <td>Твою</td>
+            <td>Твое</td>
+            <td>Твои / Твоих</td>
+        </tr>
+        <tr>
+            <td>его</td>
+            <td>его</td>
+            <td>его</td>
+            <td>его</td>
+        </tr>
+        <tr>
+            <td>ее</td>
+            <td>ее</td>
+            <td>ее</td>
+            <td>ее</td>
+        </tr>
+        <tr>
+            <td>наш / нашего</td>
+            <td>нашу</td>
+            <td>наше</td>
+            <td>наши / наших</td>
+        </tr>
+        <tr>
+            <td>ваш / вашего</td>
+            <td>вашу</td>
+            <td>ваше</td>
+            <td>ваши / ваших</td>
+        </tr>
+        <tr>
+            <td>их</td>
+            <td>их</td>
+            <td>их</td>
+            <td>их</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="hidden" id="prepTable">
+    <h3>DATIVE CASE</h3>
+    <p>Answers кому? to whom? чему? to what?</p>
+    <p>Use: Indirect Object</p>
+    <br>
+    <table>
+        <tr>
+            <th>NOUNS</th>
+        </tr>
+        <tr>
+            <th>Masculine</th>
+            <th>Feminine</th>
+            <th>Neuter</th>
+            <th>Plural</th>
+        </tr>
+        <tr>
+            <td>+e (Брате, Друге, Телефоне, Городе)
+            </td>
+            <td>(a -> e), (ия -> ии) ех. ь > матери, дочери, двери</td>
+            <td> е</td>
+            <td> ах / ях </td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>ADJECTIVES</th>
+        </tr>
+        <tr>
+            <th>Masculine</th>
+            <th>Feminine</th>
+            <th>Neuter</th>
+            <th>Plural</th>
+        </tr>
+        <tr>
+            <td>Каком?
+                <br>
+                Большом, Маленьком, Интересном, Красивом, Новом, Старом
+                <br>
+                <br>
+                We use -ем:
+                1.5 letters rule (ц, ч, ш, щ, ж) + ем
+                Хорошем
+                <br>
+                <br>
+                2.When the last consonant is soft
+                Синем, Древнем
+                
+                </td>
+        
+            <td>
+                Какой? ой, ей
+                <br>
+                <br>
+                Большая → Большой, Маленькой, Интересной, Красивой…
+                <br>
+                <br>
+                We use -ей:
+                1. 5 letters rule :
+                <br>
+                Хорошей
+                <br>
+                2.Last soft consonant:
+                <br>
+                Синей, Древней
+            </td>
+            <td>Same as Masculine</td>
+            <td>Каких? - ых, их 
+                <br>
+                <br>
+                ЫЙ → ЫХ
+                <br>
+                Интересных
+                <br>
+                Красивых
+                <br>
+                Новых
+                <br>
+                Старых
+                <br>
+                <br>
+                ОЙ, ИЙ → ИХ
+                <br>
+                Плохих
+                <br>
+                Маленьких
+                <br>
+                Больших
+                <br>
+    
+            </td>
+            </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th>PERSONAL PRONOUNS</th>
+        </tr>
+        <tr>
+            <td>About Me</td>
+            <td> обо мне</td>
+        </tr>
+        <tr>
+            <td>About You</td>
+            <td>о тебе</td>
+        </tr>
+        <tr>
+            <td>About Him</td>
+            <td>о нём</td>
+        </tr>
+        <tr>
+            <td>About Her</td>
+            <td>о ней</td>
+        </tr>
+        <tr>
+            <td>About Us</td>
+            <td>о нас</td>
+        </tr>
+        <tr>
+            <td>About y'all</td>
+            <td>о вас</td>
+        </tr>
+        <tr>
+            <td>About Them</td>
+            <td>о них</td>
+        </tr>
+    </table>
+
+    <br>
+    <table>
+        <tr>
+            <th>POSESSIVE PRONOUNS</th>
+        </tr>
+        <tr>
+            <th>Masculine</th>
+            <th>Feminine</th>
+            <th>Neuter</th>
+            <th>Plural</th>
+        </tr>
+        <tr>
+            <td>Моём</td>
+            <td>Моей</td>
+            <td>Моём</td>
+            <td>Моих</td>
+        </tr>
+        <tr>
+            <td>Твоём</td>
+            <td>Твоей</td>
+            <td>Твоём</td>
+            <td>Твоих</td>
+        </tr>
+        <tr>
+            <td>его</td>
+            <td>его</td>
+            <td>его</td>
+            <td>его</td>
+        </tr>
+        <tr>
+            <td>ее</td>
+            <td>ее</td>
+            <td>ее</td>
+            <td>ее</td>
+        </tr>
+        <tr>
+            <td>нашем</td>
+            <td>нашей</td>
+            <td>нашем</td>
+            <td>наших</td>
+        </tr>
+        <tr>
+            <td>вашем</td>
+            <td>вашей</td>
+            <td>вашем</td>
+            <td>ваших</td>
+        </tr>
+        <tr>
+            <td>их</td>
+            <td>их</td>
+            <td>их</td>
+            <td>их</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="hidden" id="dativeTable">
+    <h3>DATIVE CASE</h3>
+    <p>Answers кому? to whom? чему? to what?</p>
+    <p>Use: Indirect Object</p>
+
+    <br>
+    <table>
+        <tr>
+            <th> NOUNS </th>
+        </tr>
+        <tr>
+            <th>Words ending in а, я -> Е, ИИ</th>
+            <th> Masc. and Neutral -> У, Ю</th>
+            <th>Feminine words with ь -> И</th>
+            <th>Plural АМ/ЯМ</th>
+        </tr>
+        <tr>
+            <td>Мама -> Маме, сестра -> сестре<br>
+            Папа -> папе, мужчина -> мужчине<br>
+            Семья -> Семье<br>
+            ия -> ии <br>
+            России, Испании, Франции, Англии<br>
+            </td>
+            <td>Брат -> Брату<br>
+            Телефон -> Телефону<br>
+            Город -> Городу<br>
+            Чай -> чаю<br>
+            Музей -> музею<br>
+            Окно -> Окну<br>
+            </td>
+            <td>
+            Мать -> Матери<br>
+            Дочь -> Дочери<br>
+            Ночь -> Ночи<br>
+            </td>
+            <td>Девушки -> девушкам<br>
+            собаки -> собокам<br>
+            телефоны -> телефонам<br>
+            ям: <br>
+            when singular or plural form ends with я<br>
+            last consonant is soft дети -> детям<br>
+            </td>
+        </tr>
+
+    </table>
+
+    <table>
+        <tr>
+            <th> ADJECTIVES </th>
+        </tr>
+        <tr>
+            <th>Masculine Какому? ому, ему</th>
+            <th> Feminine - Какой> ой, ей</th>
+            <th>Neutral = Masculine</th>
+            <th>Plural - Каких? ым, им</th>
+        </tr>
+        <tr>
+            <td>
+                Большому, Маленькому, Интересному,<br>
+                Красивому, Новому, Старому<br>
+                We use ему: <br>
+                After the 5 letters rule (ц, ч, ш, щ, ж) + ем<br>
+                Хорошему<br>
+                When the final consonant is soft<br>
+                Синему, Древнему
+            </td>
+            <td>
+            Большая → Большой, Маленькой,<br>
+            Интересной, Красивой…<br>
+            <br>
+            When we use ей:<br>
+            5 letters rule, final consonant is soft<br>
+            Хорошей, Синей, Древней
+            </td>
+            <td>
+            </td>
+            <td>
+            ЫЙ → ЫМ<br>
+            Интересным<br>
+            Красивым<br>
+            Новым<br>
+            Старым<br>
+            
+            ОЙ, ИЙ → ИМ<br>
+            Плохим<br>
+            Маленьким<br>
+            Большим<br>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th> PERSONAL PRONOUNS </th>
+        </tr>
+        <tr> 
+        <td> Me <br>
+            You<br>
+            Him<br>
+            Her<br>
+            Us<br>
+            You/y’all<br>
+            Them<br>
+            </td>
+        
+            <td>
+            Мне <br>
+            Тебе<br>
+            Ему<br>
+            Ей<br>
+            Нам<br>
+            Вам<br>
+            Им<br>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th>POSESSIVE PRONOUNS</th>
+        </tr>
+        <tr>
+            <th>Masculine</th>
+            <th>Feminine</th>
+            <th>Neutral</th>
+            <th>Plural</th>
+        </tr>
+
+        <tr>
+            <td>Моему<br>
+            Твоему<br>
+            Его<br>
+            Её<br>
+            Нашему<br>
+            Вашему<br>
+            Их<br>
+            </td>
+            <td>Моей<br>
+            Твоей<br>
+            Его<br>
+            Её<br>
+            Нашей<br>
+            Вашей<br>
+            </td>
+            <td>Моему<br>
+            Твоему<br>
+            Его<br>
+            Её<br>
+            Нашему<br>
+            Вашему<br>
+            </td>
+            <td>Моим<br>
+            Твоим<br>
+            Его<br>
+            Её<br>
+            Нашим<br>
+            Вашим <br>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="hidden" id="instrumentalTable">
+    
+    <h3> INSTRUMENTAL CASE </h3>
+    <p>Answers Кем? By Who? Чем? By what?</p>
+    <br>
+    <table>    
+        <tr>
+            <th> NOUNS </th>
+        </tr>
+        <tr>
+            <th>Words ending in а, я <br> A > ОЙ <br> Я, ИЯ > ЕЙ</th>
+            <th> Masc. and Neutral -> - О > ОМ <br> ь, Й, Е -> ЕМ</th>
+            <th>Feminine words with -ь <br> ь -> Ю</th>
+            <th>Plural <br> АМИ/ЯМИ</th>
+        </tr>
+        <tr>
+            <td>Мамой, сестрой, собакой, машиной<br>
+            Папой, дедушкой, мужчиной<br>
+            Семьёй, Тётей<br>
+            Дядей<br>
+            (ия → ии)<br>
+            Россией, Испанией, Францией, Англией<br>
+            </td>
+            <td>Братом, Другом, Телефоном, Городом<br>
+            Учителем (ь → ем)<br>
+            Чаем, Музеем (й → ем)<br>
+            Кофе<br> 
+            <br>
+            Молоком, Вином, Окном, Пивом (о → ом)<br>
+            Морем<br>
+            Временем, Именем<br>
+            
+            </td>
+            <td>
+            Матерью, Дочерью, Ночью, Дверью <br>
+            </td>
+            <td>Девушками<br>
+            Странами<br>
+            Машинами<br>
+            Собаками<br>
+            Телефонами<br>
+            
+            We use -ями:<br>
+            When the singular or plural form of a noun ends with -я<br>
+            Тётями, Семьями, Друзьями<br>
+            
+            Last soft consonant:<br>
+            Детьми (because дети - т is soft)            
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th> ADJECTIVES </th>
+        </tr>
+        <tr>
+            <th>Masculine - Каким?<br>
+            им, ым</th>
+            <th> Feminine - Какой? <br>ой, ей</th>
+            <th>Neutral = Masculine</th>
+            <th>Plural - Какими? <br> ыми, ими</th>
+        </tr>
+        <tr>
+            <td>
+            ИЙ, ОЙ → ИМ<br>
+            Хорошим, Плохим, Маленьким<br>
+            <br>
+            ЫЙ → ЫМ<br>
+            Красивым, Новым. Интересным
+            </td>
+            <td>
+            Большая → Большой, Маленькой, Интересной, Красивой…<br>
+            <br>    
+            We use -ей:<br>
+            1.5 letters rule <br>
+            Хорошей<br>
+            <br>
+            2.Last soft consonant<br>
+            Синей, Древней          
+            </td>
+            <td>
+            </td>
+            <td>
+            ЫЙ → ЫМИ<br>
+            Интересными<br>
+            Красивыми<br>
+            Новыми<br>
+            Старыми<br>
+            <br>
+            ОЙ, ИЙ → ИМИ<br>
+            Плохими<br>
+            Маленькими<br>
+            Большими            
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th> PERSONAL PRONOUNS </th>
+        </tr>
+        <tr> 
+        <td> With Me <br>
+            With You<br>
+            With Him<br>
+            With Her<br>
+            With Us<br>
+            With You/y’all<br>
+            With Them<br>
+            </td>
+        
+        <td>
+            Со мной <br>
+            С тобой<br>
+            С ним<br>
+            С ней<br>
+            С нами<br>
+            С вами<br>
+            С ними       
+        </td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th>POSESSIVE PRONOUNS</th>
+        </tr>
+        <tr>
+        <th>Masculine</th>
+        <th>Feminine</th>
+        <th>Neutral</th>
+        <th>Plural</th>
+        </tr>
+        <tr>
+            <td>Моим<br>
+            Твоим<br>
+            Его<br>
+            Её<br>
+            Нашим<br>
+            Вашим<br>
+            Их        
+            </td>
+            <td>Моей<br>
+            Твоей<br>
+            Его<br>
+            Её<br>
+            Нашей<br>
+            Вашей<br>
+            </td>
+            <td>Моим<br>
+            Твоим<br>
+            Его<br>
+            Её<br>
+            Нашим<br>
+            Вашим  
+            </td>
+            <td>Моими<br>
+            Твоими<br>
+            Его<br>
+            Её<br>
+            Нашими<br>
+            Вашими       
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="hidden" id="genitiveTable">
+    <!-- OPEN TABLE HERE -->
+    
+        <h3>GENITIVE CASE </h3>
+        <p>Answers Кого? Whom? Чего? What?</p>
+        <p>Used for posession, plurals, saying you don't have something</p>
+    <br>
+    <!-- OPEN TABLE HERE -->
+    <table>
+        <tr>
+            <th> NOUNS </th>
+        </tr>
+        <tr>
+            <th>Words ending in а, я <br> A > Ы (И) <br> Я -> И <br> ИЯ > ИИ</th>
+            <th> Masc. and Neutral -> _, О > А <br> ь, Й, Е -> Я</th>
+            <th>Feminine words with -ь <br> ь -> Ю</th>
+            <th>Plural</th>
+        </tr>
+        <tr>
+            <td>Мамы, сестры, собаки, машины<br>
+                <br>
+                Папы, дедушки, мужчины<br>
+                <br>
+                Семьи, Тёти<br>
+                <br>
+                Дяди<br>
+                <br>
+                (ия → ии)<br>
+                России, Испании, Франции, Англии  <br>          
+            </td>
+            <td>Брата, Друга, Телефона, Города<br>
+                <br>
+                Учителя (ь → я)<br>
+                <br>
+                Чая, Музея (й → я)<br>
+                <br>
+                Кофе<br> 
+                <br>
+                Молока, Вина, Окна, Пива (о → а)<br>
+                Моря<br>
+                Времени, Имени<br>            
+            </td>
+            <td>
+                Матери, Дочери, Ночи, Двери
+            </td>
+            <td>
+                Мasculine: <br>
+                If ends in consonant, add + ов<br>
+                Й -> ЕВ <br>
+                ь -> ЕЙ<br>
+                <br>
+                Feminine:<br>
+                a -> _<br>
+                Я -> ь<br>
+                ИЯ -> ИЙ<br>
+                ь -> ЕЙ<br>
+                <br>
+                Neuter: <br>
+                o -> _<br>
+                Е -> ЕЙ<br>
+                ИЕ -> ИЙ<br>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+<!-- OPEN TABLE HERE -->
+    <table>
+        <tr> 
+            <th> TO HAVE </th>
+        </tr>
+
+        <tr> 
+            <td> If positive (you do have), then: У меня/тебя/него есть + Nominative <br>
+            If negative (you don't have), then: У меня/тебя/него нет + Genitive<br>
+            </td>
+        </tr>
+    </table>
+    <br>
+<!-- OPEN TABLE HERE -->
+    <table>
+        <tr>
+            <th> ADJECTIVES </th>
+        </tr>
+        <tr>
+            <th>Masculine<br>
+            ый, ой -> ого <br>
+            ий -> его</th>
+            <th> Feminine - Какой? <br>ая -> ой/ей <br>
+            яя -> ей</th>
+            <th>Neutral<br>
+                ое -> ого<br>
+                ее -> его<br>
+            </th>
+            <th>Plural<br> ые -> ых <br> ие -> их</th>
+        </tr>
+        <tr>
+            <td>
+                новый -> нового<br>
+                большой -> большого<br>
+                хороший -> хорошего<br>
+            </td>
+            <td>
+                новая -> новой<br>
+                синяя -> синей<br>
+            </td>
+            <td>
+                новое -> нового<br>
+                хорошее -> хорошего<br>
+            </td>
+            <td>
+                новые -> новых<br>
+                хорошие -> хороших<br> 
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th> PERSONAL PRONOUNS </th>
+        </tr>
+        <tr> 
+            <td>Me <br>
+                You<br>
+                Him<br>
+                Her<br>
+                Us<br>
+                You/y’all<br>
+                Them<br>
+                </td>
+            
+            <td>
+                Меня <br>
+                Тебя<br>
+                Его<br>
+                Ее<br>
+                Нас<br>
+                Вас<br>
+                Их     
+            </td>
+        </tr>
+    </table>
+    <br>
+<!-- OPEN TABLE HERE -->
+    <table>
+        <tr>
+            <th>POSESSIVE PRONOUNS</th>
+        </tr>
+        <tr>
+        <th>Masculine</th>
+        <th>Feminine</th>
+        <th>Neutral</th>
+        <th>Plural</th>
+        </tr>
+
+        <tr>
+            <td>Моего<br>
+                Твоего<br>
+                Его<br>
+                Её<br>
+                Нашего<br>
+                Вашего<br>
+                Их        
+                </td>
+            <td>Моей<br>
+                Твоей<br>
+                Его<br>
+                Её<br>
+                Нашей<br>
+                Вашей<br>
+                </td>
+            <td>Моего<br>
+                Твоего<br>
+                Его<br>
+                Её<br>
+                Нашего<br>
+                Вашего<br>
+                Их
+                </td>
+            <td>Моих<br>
+                Твоих<br>
+                Его<br>
+                Ее<br>
+                Наших<br>
+                Ваших <br>
+                Их<br>
+                </td>
+        </tr>
+    </table>
+    </div>
+
+
+        <script src="russianhelper.js"></script>
+    </body>
+</html>
