@@ -60,22 +60,27 @@
     <h1 class="topstyle">Russian Study Helper</h1>
 
     <div class="boxContainer">
-        <div class="box" onclick="rusCardDraw()">
+        <div class="box" onclick="rusCardClick()">
         <div id="cardBoxFR"></div>
         </div>
 
-        <div class="box" onclick="showEnglishCard()">
+        <div class="box" onclick="engCardClick()">
         <div id="cardBoxEN"></div>
         </div>
         <br>
-        <button id="prevCardButton" onclick="prevCard()">Previous Card</button>
+        <button class="helpButtons" id="prevCardButton" onclick="prevCard()">Previous Card</button>
+        <button class="helpButtons" id="randomCardButton" onclick="randomCard()">Random Card</button>
+        <button class="helpButtons" id="switchToNumbersButton" onclick="switchVocabandNumbers()">Switch deck</button>
+        <p id="currentDeck">Current Deck: Vocab</p>
+        <div id="wordLookupEntryContainer">
+            <label for="wordLookupEntryBox">Enter Russian Word:</label>
+            <input type="text" id="wordLookupEntryBox">
+            <button onclick="searchWord()" id="searchWordButton">Lookup Word</button>
+        </div>
     </div>
 
-    <div id="wordLookupEntryContainer">
-        <label for="wordLookupEntryBox">Enter Russian Word:</label>
-        <input type="text" id="wordLookupEntryBox">
-        <button onclick="searchWord()" id="searchWordButton">Lookup Word</button>
-    </div>
+
+
 
     <br>
     <h3 class="centeredRedText">Grammar Help</h3>
@@ -87,7 +92,6 @@
         <button class="helpButtons" onclick="showGenitiveTable()" id="genitiveTableButton"> Genitive Case </button>
         <br>
     </div>
-
 
 <div class="hidden" id="accTable">
     <h3>ACCUSATIVE CASE</h3>
@@ -115,7 +119,7 @@
     <br>
    <table>
     <tr>
-        <th>ADJECTIVES</th>
+        <th colspan="4">ADJECTIVES</th>
     </tr>
     <tr>
         <th>Masculine</th>
@@ -148,43 +152,43 @@
     <br>
 
    <table>
-    <tr>
-        <th>PERSONAL PRONOUNS</th>
-    </tr>
-    <tr>
-        <td>Me</td>
-        <td> Mеня</td>
-    </tr>
-    <tr>
-        <td>You</td>
-        <td>тебя</td>
-    </tr>
-    <tr>
-        <td>Him</td>
-        <td>его</td>
-    </tr>
-    <tr>
-        <td>Her</td>
-        <td>ее</td>
-    </tr>
-    <tr>
-        <td>Us</td>
-        <td>Нас</td>
-    </tr>
-    <tr>
-        <td>y'all</td>
-        <td>Вас</td>
-    </tr>
-    <tr>
-        <td>They</td>
-        <td>Их</td>
-    </tr>
+        <tr>
+            <th colspan="2">PERSONAL PRONOUNS</th>
+        </tr>
+        <tr>
+            <td>Me</td>
+            <td> Mеня</td>
+        </tr>
+        <tr>
+            <td>You</td>
+            <td>тебя</td>
+        </tr>
+        <tr>
+            <td>Him</td>
+            <td>его</td>
+        </tr>
+        <tr>
+            <td>Her</td>
+            <td>ее</td>
+        </tr>
+        <tr>
+            <td>Us</td>
+            <td>Нас</td>
+        </tr>
+        <tr>
+            <td>y'all</td>
+            <td>Вас</td>
+        </tr>
+        <tr>
+            <td>They</td>
+            <td>Их</td>
+        </tr>
    </table>
    <br>
    
     <table>
         <tr>
-            <th>POSESSIVE PRONOUNS</th>
+            <th colspan="4">POSESSIVE PRONOUNS</th>
         </tr>
         <tr>
             <th>Masculine</th>
@@ -239,13 +243,13 @@
 
 
 <div class="hidden" id="prepTable">
-    <h3>DATIVE CASE</h3>
-    <p>Answers кому? to whom? чему? to what?</p>
-    <p>Use: Indirect Object</p>
+    <h3>PREPOSITIONAL CASE</h3>
+    <p>Answers О ком? - About who? О чём? - About what?</p>
+    
     <br>
     <table>
         <tr>
-            <th>NOUNS</th>
+            <th colspan="4">NOUNS</th>
         </tr>
         <tr>
             <th>Masculine</th>
@@ -254,7 +258,7 @@
             <th>Plural</th>
         </tr>
         <tr>
-            <td>+e (Брате, Друге, Телефоне, Городе)
+            <td>Add +e to the end of the word <br> (Брате, Друге, Телефоне, Городе)
             </td>
             <td>(a -> e), (ия -> ии) ех. ь > матери, дочери, двери</td>
             <td> е</td>
@@ -265,7 +269,7 @@
     <br>
     <table>
         <tr>
-            <th>ADJECTIVES</th>
+            <th colspan="4">ADJECTIVES</th>
         </tr>
         <tr>
             <th>Masculine</th>
@@ -335,7 +339,7 @@
     <br>
     <table>
         <tr>
-            <th>PERSONAL PRONOUNS</th>
+            <th colspan="2">PERSONAL PRONOUNS</th>
         </tr>
         <tr>
             <td>About Me</td>
@@ -370,7 +374,7 @@
     <br>
     <table>
         <tr>
-            <th>POSESSIVE PRONOUNS</th>
+            <th colspan="4">POSESSIVE PRONOUNS</th>
         </tr>
         <tr>
             <th>Masculine</th>
@@ -432,7 +436,7 @@
     <br>
     <table>
         <tr>
-            <th> NOUNS </th>
+            <th colspan="4"> NOUNS </th>
         </tr>
         <tr>
             <th>Words ending in а, я -> Е, ИИ</th>
@@ -472,7 +476,7 @@
 
     <table>
         <tr>
-            <th> ADJECTIVES </th>
+            <th colspan="4"> ADJECTIVES </th>
         </tr>
         <tr>
             <th>Masculine Какому? ому, ему</th>
@@ -517,7 +521,7 @@
     <br>
     <table>
         <tr>
-            <th> PERSONAL PRONOUNS </th>
+            <th colspan="2"> PERSONAL PRONOUNS </th>
         </tr>
         <tr> 
         <td> Me <br>
@@ -543,7 +547,7 @@
     <br>
     <table>
         <tr>
-            <th>POSESSIVE PRONOUNS</th>
+            <th colspan="4">POSESSIVE PRONOUNS</th>
         </tr>
         <tr>
             <th>Masculine</th>
@@ -593,7 +597,7 @@
     <br>
     <table>    
         <tr>
-            <th> NOUNS </th>
+            <th colspan="4"> NOUNS </th>
         </tr>
         <tr>
             <th>Words ending in а, я <br> A > ОЙ <br> Я, ИЯ > ЕЙ</th>
@@ -640,7 +644,7 @@
     <br>
     <table>
         <tr>
-            <th> ADJECTIVES </th>
+            <th colspan="4"> ADJECTIVES </th>
         </tr>
         <tr>
             <th>Masculine - Каким?<br>
@@ -686,7 +690,7 @@
     <br>
     <table>
         <tr>
-            <th> PERSONAL PRONOUNS </th>
+            <th colspan="2"> PERSONAL PRONOUNS </th>
         </tr>
         <tr> 
         <td> With Me <br>
@@ -712,7 +716,7 @@
     <br>
     <table>
         <tr>
-            <th>POSESSIVE PRONOUNS</th>
+            <th colspan="4">POSESSIVE PRONOUNS</th>
         </tr>
         <tr>
         <th>Masculine</th>
@@ -764,7 +768,7 @@
     <!-- OPEN TABLE HERE -->
     <table>
         <tr>
-            <th> NOUNS </th>
+            <th colspan="4"> NOUNS </th>
         </tr>
         <tr>
             <th>Words ending in а, я <br> A > Ы (И) <br> Я -> И <br> ИЯ > ИИ</th>
@@ -836,7 +840,7 @@
 <!-- OPEN TABLE HERE -->
     <table>
         <tr>
-            <th> ADJECTIVES </th>
+            <th colspan="4"> ADJECTIVES </th>
         </tr>
         <tr>
             <th>Masculine<br>
@@ -873,7 +877,7 @@
     <br>
     <table>
         <tr>
-            <th> PERSONAL PRONOUNS </th>
+            <th colspan="2"> PERSONAL PRONOUNS </th>
         </tr>
         <tr> 
             <td>Me <br>
@@ -900,7 +904,7 @@
 <!-- OPEN TABLE HERE -->
     <table>
         <tr>
-            <th>POSESSIVE PRONOUNS</th>
+            <th colspan="4">POSESSIVE PRONOUNS</th>
         </tr>
         <tr>
         <th>Masculine</th>
